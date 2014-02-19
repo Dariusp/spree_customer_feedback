@@ -1,0 +1,19 @@
+<% @feedback.order.line_items.each do |p| %>
+<div>
+    <img src="<%=p.product.images.first.attachment.url(:product) %>" />
+    <div>
+      <label><%=Spree.t(:review_product_description)%></label>
+      <div class="rating" data-rate-name="product_description_rate" data-rate-product="<%=p.product.id%>" data-rate-feedback="<%=@feedback.has_url%>"><!-- --></div>
+    </div>
+  <div>
+    <label><%=Spree.t(:review_product_description)%></label>
+    <div class="rating" data-rate-name="product_description_rate" data-rate-product="<%=p.product.id%>" data-rate-feedback="<%=@feedback.has_url%>"><!-- --></div>
+  </div>
+  <div>
+    <label><%=Spree.t(:review_product_description)%></label>
+    <div class="rating" data-rate-name="product_description_rate" data-rate-product="<%=p.product.id%>" data-rate-feedback="<%=@feedback.has_url%>"><!-- --></div>
+  </div>
+    <textarea data-rate-name="product_review"></textarea>
+</div>
+<% end %>
+

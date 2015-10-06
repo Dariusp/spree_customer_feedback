@@ -8,7 +8,7 @@ class CreateProductFeedbacks < ActiveRecord::Migration
       t.text :review
       t.float :rating
       t.boolean :published
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

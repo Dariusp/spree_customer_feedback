@@ -2,13 +2,13 @@ require "spec_helper"
 require 'benchmark'
 
 describe Spree::Feedback do
-  let(:feedback) {create(:feedback)}
-  let(:order){create(:order)}
+  let(:feedback) { create(:feedback) }
+  let(:order) { create(:order) }
 
   context "after few days when created" do
-    before{
-      feedback.stub(:status){"open"}
-      feedback.stub(:created_at){1.day.ago}
+    before {
+      allow(feedback).to receive(:status).and_return "open"
+      allow(feedback).to receive(:created_at).and_return 1.day.ago
     }
 
     it "should send email when status open" do
@@ -17,8 +17,8 @@ describe Spree::Feedback do
     end
 
     it "should don't send email when status sent" do
-      feedback.stub(:status){"sent"}
-      expect(feedback).should_not_receive(:send_order_feedback)
+      allow(feedback).to receive(:status).and_return "sent"
+      expect(feedback).to_not receive(:send_order_feedback)
       feedback.send_feedback
     end
 
@@ -28,7 +28,7 @@ describe Spree::Feedback do
     end
 
     it "should send order mail when order send_order_feedback" do
-      feedback.stub(:order){order}
+      allow(feedback).to receive(:order).and_return order
       expect(feedback.order).to receive(:send_feedback_mail)
       feedback.send_order_feedback
       expect(feedback.hash_url).to be
@@ -36,7 +36,7 @@ describe Spree::Feedback do
   end
 
   context "save user review" do
-    let(:product){create(:product)}
+    let(:product) { create(:product) }
 
   end
 end

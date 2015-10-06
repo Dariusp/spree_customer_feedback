@@ -3,7 +3,7 @@ class CreateFeedbacktable < ActiveRecord::Migration
     create_table :spree_feedbacks do |t|
       t.references :order
       t.string :status
-      t.timestamps
+      t.timestamps null:false
     end
   end
 end

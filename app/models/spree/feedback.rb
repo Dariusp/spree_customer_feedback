@@ -18,7 +18,6 @@ module Spree
 
 
     def self.run
-      require "securerandom"
       Feedback.all.each do |f|
         f.send_feedback unless f.created_at >= 1.week.ago
         f.close_feedback unless f.created_at >= 3.week.ago

@@ -4,6 +4,7 @@ require 'benchmark'
 describe Spree::Shipment do
   let(:order) { create(:order) }
   let(:shipping_method) { create(:shipping_method, name: "UPS") }
+  let(:destination_location) { create(:stock_location_with_items) }
 
   let(:variant) { mock_model(Spree::Variant) }
   context "Order shipped" do
@@ -18,6 +19,7 @@ describe Spree::Shipment do
     let(:shipment) do
       shipment = Spree::Shipment.new order: order
       shipment.stub shipping_method: shipping_method
+      shipment.stub stock_location: destination_location
       shipment.state = 'ready'
       shipment.cost = 1
       shipment.save

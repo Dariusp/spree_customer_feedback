@@ -9,9 +9,13 @@ module Spree
       if @feedback
         feedback_type = params[:rate_type]
         rate_product = Product.find_by_id(params[:rate_product])
-        review = if params[:review].nil? then '' else params[:review] end
+        review = if params[:review].nil? then
+                   ''
+                 else
+                   params[:review]
+                 end
         rating = params[:rate_feedback]
-        review = ProductFeedback.find_or_create(:order => @feedback.order, :user=>@feedback.order.user, :feedback_type=>feedback_type)
+        review = ProductFeedback.find_or_create(:order => @feedback.order, :user => @feedback.order.user, :feedback_type => feedback_type)
         review.update_attributes({:product => rate_product, :rating => rating, :review => review})
       end
       respond_to? do |format|

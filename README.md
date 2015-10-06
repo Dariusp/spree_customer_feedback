@@ -1,5 +1,7 @@
 SpreeCustomerFeedback
 =====================
+![travis](https://travis-ci.org/Dariusp/spree_customer_feedback.svg)
+
 
 Introduction goes here.
 
